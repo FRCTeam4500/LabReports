@@ -20,6 +20,9 @@ public class Window {
 
 	private JFrame frmPhysicsLabHelper;
 	private JTable table;
+	
+	public static double[] xValue;
+	public static double[] yValue;
 
 	/**
 	 * Launch the application.
@@ -50,7 +53,7 @@ public class Window {
 	private void initialize() {
 		frmPhysicsLabHelper = new JFrame();
 		frmPhysicsLabHelper.setTitle("Physics Lab Helper");
-		frmPhysicsLabHelper.setBounds(100, 100, 450, 300);
+		frmPhysicsLabHelper.setBounds(100, 100, 497, 344);
 		frmPhysicsLabHelper.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPhysicsLabHelper.getContentPane().setLayout(null);
 		
@@ -59,20 +62,22 @@ public class Window {
 		table.setColumnSelectionAllowed(true);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{new Integer(0), new Integer(0)},
+				{"0", "0"},
+				{"0", "0"},
 			},
 			new String[] {
 				"X", "Y"
 			}
 		));
-		table.setBounds(0, 46, 142, 128);
+		table.setBounds(0, 46, 142, 160);
 		frmPhysicsLabHelper.getContentPane().add(table);
 		
 		JLabel lblNewLabel = new JLabel("X");
@@ -88,11 +93,20 @@ public class Window {
 		JButton btnNewButton = new JButton("Submit Data");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String numone = "" + table.getValueAt(2, 1);
-				System.out.println(numone);
+				//String numone = "" + table.getValueAt(2, 1);
+				//System.out.println(numone);
+				xValue = new double[table.getRowCount()];
+				yValue = new double[table.getRowCount()];
+				for(int i = 0; i < xValue.length; i++)
+				{
+					String placeholderX = "" + table.getValueAt(i, 0);
+					xValue[i] = Double.parseDouble(placeholderX);
+					String placeholderY = "" + table.getValueAt(i, 1);
+					xValue[i] = Double.parseDouble(placeholderY);
+				}
 			}
 		});
-		btnNewButton.setBounds(10, 185, 115, 23);
+		btnNewButton.setBounds(10, 217, 115, 23);
 		frmPhysicsLabHelper.getContentPane().add(btnNewButton);
 	}
 }
